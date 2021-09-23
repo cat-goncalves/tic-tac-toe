@@ -65,9 +65,11 @@ body {
      flex-direction: row;
 }
 .x {
+     background: center / cover no-repeat url('img/candiace.jpeg');
      background-color: blue;
 }
 .o {
+     background: center / cover no-repeat url('img/monique.jpeg');
      background-color: red;
 }
 /******************************************

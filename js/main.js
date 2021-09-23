@@ -3,6 +3,17 @@ let eachSquare = document.querySelectorAll('.box')
 let winName = document.querySelector('#winner')
 let countGameBoardClicks = 0
 
+let gameState = ['', '', '', '', '', '', '', '', '']
+const winConditions = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [0, 4, 8],
+  [2, 4, 6]
+];
+
 gameBoard.addEventListener('click', playerTurn)
 
 function playerTurn(event) {
@@ -10,10 +21,40 @@ function playerTurn(event) {
     countGameBoardClicks += 1
     let playerMark = ((countGameBoardClicks % 2 === 0) ? 'x' : 'o')
     event.target.classList.add(playerMark)
-    console.log(evaluateGame(playerMark))
+    gameState[Number(event.target.id)] = playerMark
+    console.log(gameState)
+    evaluateGame()
   };
 }
 
+function evaluateGame(playerMark){
+  let playerName = ((countGameBoardClicks % 2 === 0) ? 'Player 1 Wins' : 'Player 2 Wins') 
+
+  let roundWon = false;
+  for (let i = 0; i <= winConditions.length - 1; i++) {
+    const singleWinCondition = winConditions[i]
+    console.log(winConditions[i])
+    let a = gameState[singleWinCondition[0]];
+    let b = gameState[singleWinCondition[1]];
+    let c = gameState[singleWinCondition[2]];
+    if (a === '' || b === '' || c === '') {
+      continue;
+    }
+    if (a === b && b === c) {
+      roundWon = true;
+    }
+  }
+  if(roundWon) {
+    console.log(playerName,) 
+    return winName.innerText = playerName
+  }
+
+}
+
+
+
+
+/*
 function evaluateGame(playerMark){
   let playerName = ((countGameBoardClicks % 2 === 0) ? 'Player 1 Wins' : 'Player 2 Wins')
   for (let modulo = 0; modulo <= 2; modulo++){
@@ -31,6 +72,7 @@ function evaluateGame(playerMark){
     if (columnWin || row1Win || row2Win || row3Win){return winName.innerText = playerName}
   }  
 }
+*/
 
 
 // for (i = 0; i <3; i++){column.push(i * 3 + 1)}
