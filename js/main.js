@@ -1,4 +1,6 @@
 let gameBoard = document.querySelector('#container')
+let eachSquare = document.querySelectorAll('.box')
+let winName = document.querySelector('#winner')
 let countGameBoardClicks = 0
 
 gameBoard.addEventListener('click', playerTurn)
@@ -13,16 +15,21 @@ function playerTurn(event) {
 }
 
 function evaluateGame(playerMark){
+  let playerName = ((countGameBoardClicks % 2 === 0) ? 'Player 1 Wins' : 'Player 2 Wins')
   for (let modulo = 0; modulo <= 2; modulo++){
     let column = []
     for (let i = 0; i < 3; i++){column.push(i * 3 + modulo)}
-    let playerWon = column
-      .map(i => document.querySelectorAll('.box')[i])
+    let columnWin = column
+      .map(i => eachSquare[i])
       .map(node => node.classList.contains(playerMark))
       .reduce((a,b) => a && b)
-      console.log(playerWon)
-      if (playerWon){return true}
-  }
+    let row1Win = Array.from(eachSquare).slice(0, 3).map(x => x.classList.contains(playerMark)).reduce((a,b) => a && b)
+    let row2Win = Array.from(eachSquare).slice(3,6).map(x => x.classList.contains(playerMark)).reduce((a,b) => a && b)
+    let row3Win = Array.from(eachSquare).slice(6).map(x => x.classList.contains(playerMark)).reduce((a,b) => a && b)
+
+      console.log(columnWin, row1Win, row2Win, row3Win)
+    if (columnWin || row1Win || row2Win || row3Win){return winName.innerText = playerName}
+  }  
 }
 
 
@@ -30,7 +37,9 @@ function evaluateGame(playerMark){
 // for (i = 0; i <3; i++){column.push(i * 3 + 2)}
 
   // arr.reduce((a, b) => a && b);
-Array.from(document.querySelectorAll('.box')).slice(6).map(x => x.classList.contains('x')).reduce((a,b) => a && b)
+// Array.from(eachSquare).slice(0, 3).map(x => x.classList.contains('x')).reduce((a,b) => a && b)
+// Array.from(eachSquare).slice(3,6).map(x => x.classList.contains('x')).reduce((a,b) => a && b)
+// Array.from(eachSquare).slice(6).map(x => x.classList.contains('x')).reduce((a,b) => a && b)
 
 // column.map(i => document.querySelectorAll('.box')[i])
 
