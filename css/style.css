@@ -5,6 +5,7 @@
 /* Box Model Hack */
 *{
   box-sizing: border-box;
+  justify-content: center;
 }
 
 /* Clear fix hack */
@@ -48,15 +49,43 @@
 /*******************************************/
 
 body {
-     color: #000;
+     color: #fff;
      font-size: 12px;
      line-height: 1.4;
-     font-family: Helvetica, Arial, sans-serif;
+     font-family: 'Prata', Helvetica, Arial, sans-serif;
+     background:center / cover no-repeat url('img/the-barn.jpeg');
+     background-color: #000;
+     text-align: center;
+}
+h1 {
+     font-family: 'Bebas Neue', Helvetica, Arial, sans-serif;
+    text-align: center;
+    font-size: 4vw;
+    width: 50%;
+    margin-left: 25%;
+}
+h2 {
+     text-decoration: underline;
+     font-size: 2.5vw;
+     font-weight: bold;
+     width: 20%;
+     margin-left: 40%;
+}
+p {
+     width: 60%;
+     font-size: 1.5vw;
+     margin-left: 20%;
+     line-height: 1.75;
+     padding: 2%;
+}
+h1, h2, p {
+     background-color: rgba(0, 0, 0, 0.6);
 }
 .box {
-     height: 200px;
-     width: 200px;
-     border: 2px solid black;
+     height: 20vh;
+     width: 20vh;
+     border: 2px solid #fff;
+     background-color: rgba(255, 255, 255, 0.5);
 }
 .topRow,
 .middleRow,
@@ -71,6 +100,14 @@ body {
 .o {
      background: center / cover no-repeat url('img/monique.jpeg');
      background-color: red;
+}
+.reset {
+     font-size: 1vw;
+     border: none;
+     padding: 0.5% 1%;
+     text-transform: uppercase;
+     border-radius: 24px;
+     margin: 1% 0 5% 0;
 }
 /******************************************
 /* LAYOUT
